@@ -55,7 +55,7 @@ module.exports = function (app) {
             userExists = true;
             console.log("USER ALREADY EXISTS");
             // req.flash('warning', "This email address is already registered. <a href='/login'>Log in!</a>");
-            res.sendStatus(401)
+            res.status(401).send({ error: "The username already exists" });
           }
         }
         if(!userExists) {
