@@ -55,7 +55,7 @@ module.exports = function (app) {
             userExists = true;
             console.log("USER ALREADY EXISTS");
             // req.flash('warning', "This email address is already registered. <a href='/login'>Log in!</a>");
-            // res.redirect('/join');
+            res.sendStatus(401)
           }
         }
         if(!userExists) {
@@ -66,14 +66,15 @@ module.exports = function (app) {
               client.query('COMMIT')
               console.log(result)
               // req.flash('success','User created.')
-              // res.redirect('/login');
+              res.sendStatus(200)
               return;
             }
           });
 
         }
-
+        return;
       }));
+      console.log("THIS RUNS");
       client.release();
     }
     catch(e){throw(e)}
